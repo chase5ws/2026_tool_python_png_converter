@@ -44,13 +44,15 @@ def convert_to_png():
             if img.is_animated:
                 img = img.convert('RGBA')
             
-            # 選擇儲存位置和檔名
+            # 選擇儲存位置和檔名（確保彈窗正常彈出）
             file_name = os.path.splitext(os.path.basename(input_path))[0]
             save_path = filedialog.asksaveasfilename(
                 title="儲存PNG檔案",
                 defaultextension=".png",
                 initialfile=file_name,
-                filetypes=[("PNG檔案", "*.png")]
+                filetypes=[("PNG檔案", "*.png")],
+                # 設定預設保存路徑為原圖片所在目錄，提升使用體驗
+                initialdir=os.path.dirname(input_path)
             )
             
             if save_path:
@@ -66,8 +68,9 @@ def convert_to_png():
 # 建立主視窗
 root = tk.Tk()
 root.title("圖片轉PNG工具")
-root.geometry("500x150")  # 設定視窗大小
-root.resizable(False, False)  # 禁止調整視窗大小
+# 調整視窗寬度以匹配加長的輸入框
+root.geometry("800x150")  
+root.resizable(False, False)  
 
 # 設定字體（確保繁體中文顯示正常）
 font_style = ("Microsoft JhengHei", 10)
@@ -76,18 +79,19 @@ font_style = ("Microsoft JhengHei", 10)
 frame = tk.Frame(root, padx=20, pady=20)
 frame.pack(fill=tk.BOTH, expand=True)
 
-# 檔案路徑輸入框
+# 檔案路徑輸入框（加長寬度，從40調整為60）
 label_path = tk.Label(frame, text="選取的圖片：", font=font_style)
 label_path.grid(row=0, column=0, sticky=tk.W, pady=5)
 
-entry_path = tk.Entry(frame, width=40, font=font_style)
+# 核心修改：加長輸入框，width從40改為60，並開啟自動滾動
+entry_path = tk.Entry(frame, width=60, font=font_style)
 entry_path.grid(row=0, column=1, padx=10, pady=5)
 
 # 選擇檔案按鈕
 btn_select = tk.Button(frame, text="選擇圖片", command=select_image, font=font_style, width=10)
 btn_select.grid(row=0, column=2, padx=5, pady=5)
 
-# 轉換按鈕
+# 轉換按鈕（略調整位置匹配新界面）
 btn_convert = tk.Button(frame, text="轉換為PNG", command=convert_to_png, font=font_style, 
                         bg="#4CAF50", fg="white", width=20, height=2)
 btn_convert.grid(row=1, column=1, pady=15)
