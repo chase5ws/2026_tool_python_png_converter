@@ -5,6 +5,7 @@
 ![tkinter](https://img.shields.io/badge/tkinter-built--in-lightgrey)
 ![pillow](https://img.shields.io/badge/Pillow-9.0%2B-red)
 ![platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-brightgreen)
+![icon](icon.png)
 
 一個基於 Python + Tkinter 開發的圖形介面工具，可將常見格式的圖片（JPG、BMP、GIF、WebP 等）快速轉換為 PNG 格式，操作簡單、無需命令列操作。
 
